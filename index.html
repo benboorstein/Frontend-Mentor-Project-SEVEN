@@ -5,184 +5,247 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32x32.png">
+
+    <!-- All of the two lines just below were verbatim pasted from fonts.google.com. Remember how this works re: font weights, etc. -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./assets/css/style.css"> <!--always put this line after fonts because of how things load-->
+    <!-- "./" means "from right here". "../" means "go up a level". And, from a site:
+      Here is all you need to know about relative file paths:
+        Starting with “/” returns to the root directory and starts there
+        Starting with “../” moves one directory backwards and starts there
+        Starting with “../../” moves two directories backwards and starts there (and so on…)
+        To move forward, just start with the first subdirectory and keep moving forward -->
     
     <title>Frontend Mentor | Job Listings</title>
-
   </head>
+
   <body>
-    <!-- Item Start -->
-    Photosnap
-    New!
-    Featured
-    Senior Frontend Developer
-    1d ago
-    Full Time
-    USA only
-    <!-- Role -->
-    Frontend
-    <!-- Level -->
-    Senior
-    <!-- Languages -->
-    HTML
-    CSS
-    JavaScript
-    <!-- Item End -->
 
-    <!-- Item Start -->
-    Manage
-    New!
-    Featured
-    Fullstack Developer
-    1d ago
-    Part Time
-    Remote
-    <!-- Role -->
-    Fullstack
-    <!-- Level -->
-    Midweight
-    <!-- Languages -->
-    Python
-    <!-- Tools -->
-    React
-    <!-- Item End -->
+<!--
+1) what prompts the appearance of the filter? Maybe going to a particular job posting and then clicking on one of this job posting's "Frontend"/"Senior"/"HTML"/"CSS"/"JavaScript" buttons?
+  - Correct. On page load, there's no filter section. As soon as a user clicks on one of the technology 'pills' a.k.a. 'tags', the filter section will appear, showing that selected tag.
+2) what items/descriptors are included in the filter upon its initial appearance?  Maybe with ALL POSSIBLE descriptors ("Frontend" and "Senior" and "JavaScript" and "CSS" and "HTML" and "Junior" and "React", and so on)?
+  - By the time the filter section appears, it will include one 'tag', the one the user just clicked to begin filtering.
+3) what exactly is the filter doing? Is it presenting only the job postings with the descriptors (e.g., "Frontend" or "Senior" or "JavaScript") present in the filter?
+  - Correct. It is keeping track of the selected tags, and only presenting jobs with all of those tags, among any others that job may feature
+-->
 
-    <!-- Item Start -->
-    Account
-    New!
-    Junior Frontend Developer
-    2d ago
-    Part Time
-    USA only
-    <!-- Role -->
-    Frontend
-    <!-- Level -->
-    Junior
-    <!-- Languages -->
-    JavaScript
-    <!-- Tools -->
-    React
-    Sass
-    <!-- Item End -->
+    <header>
+      <section class="is-hidden" id="filter">
+        <button id="clear-filter">Clear</button>
+        <ul>
+          <!-- Is this a good spot for the tags to eventually be added to? -->
+        </ul>
+      </section>
+    </header>
 
-    <!-- Item Start -->
-    MyHome
-    Junior Frontend Developer
-    5d ago
-    Contract
-    USA only
-    <!-- Role -->
-    Frontend
-    <!-- Level -->
-    Junior
-    <!-- Languages -->
-    CSS
-    JavaScript
-    <!-- Item End -->
+    <main>
+      <div id="job-listings">
+        <section class="job-listing">
+          <img src="./assets/img/photosnap.svg" alt="">
+          <p>
+            <span class="company-name">Photosnap</span> <span class="bubble-new">New!</span> <span class="bubble-featured">Featured</span>
+          </p>
+          <h1>
+            Senior Frontend Developer
+          </h1>
+          <!-- QQQ: Which is better, doing the below as a <ul> (shown just below), or doing it as a <p> (as shown below the <ul>, commented out)? Obviously once I've decided which I'm going with then I'll change all the other ones further down in the code. -->
+          <ul class="3-details">
+            <li>1d ago</li>
+            <li>Full Time</li>
+            <li>USA only</li>
+          </ul>
+          <!-- <p class="3-details">
+            <span class="put-bullet-after">1d ago</span> <span class="put-bullet-after">Full Time</span> USA only      
+          </p> -->
+          <ul class="tags">
+            <li><button class="tag frontend">Frontend</button></li>
+            <li><button class="tag senior">Senior</button></li>
+            <li><button class="tag html">HTML</button></li>
+            <li><button class="tag css">CSS</button></li>
+            <li><button class="tag javascript">JavaScript</button></li>
+          </ul>
+        </section>
+        <section class="job-listing">
+          <img src="./assets/img/manage.svg" alt="">
+          <p>
+            <span class="company-name">Manage</span> <span class="bubble-new">New!</span> <span class="bubble-featured">Featured</span>
+          </p>
+          <h1>
+            Fullstack Developer
+          </h1>
+          <p>
+            1d ago - Part Time - Remote
+          </p>
+          <ul class="tags">
+            <li><button class="tag fullstack">Fullstack</button></li>
+            <li><button class="tag midweight">Midweight</button></li>
+            <li><button class="tag python">Python</button></li>
+            <li><button class="tag react">React</button></li>
+          </ul>
+        </section>
+        <section class="job-listing">
+          <img src="./assets/img/account.svg" alt="">
+          <p>
+            <span class="company-name">Account</span> <span class="bubble-new">New!</span>
+          </p>
+          <h1>
+            Junior Frontend Developer
+          </h1>
+          <p>
+            2d ago - Part Time - USA only
+          </p>
+          <ul class="tags">
+            <li><button class="tag frontend">Frontend</button></li>
+            <li><button class="tag junior">Junior</button></li>
+            <li><button class="tag react">React</button></li>
+            <li><button class="tag sass">Sass</button></li>
+            <li><button class="tag javascript">JavaScript</button></li>
+          </ul>
+        </section>
+        <section class="job-listing">
+          <img src="./assets/img/myhome.svg" alt="">
+          <p>
+            <span class="company-name">MyHome</span>
+          </p>
+          <h1>
+            Junior Frontend Developer
+          </h1>
+          <p>
+            5d ago - Contract - USA only
+          </p>
+          <ul class="tags">
+            <li><button class="tag frontend">Frontend</button></li>
+            <li><button class="tag junior">Junior</button></li>
+            <li><button class="tag css">CSS</button></li>
+            <li><button class="tag javascript">JavaScript</button></li>
+          </ul>
+        </section>
+        <section class="job-listing">
+          <img src="./assets/img/loop-studios.svg" alt="">
+          <p>
+            <span class="company-name">Loop Studios</span>
+          </p>
+          <h1>
+            Software Engineer
+          </h1>
+          <p>
+            1w ago - Full Time - Worldwide
+          </p>
+          <ul class="tags">
+            <li><button class="tag fullstack">Fullstack</button></li>
+            <li><button class="tag midweight">Midweight</button></li>
+            <li><button class="tag javascript">JavaScript</button></li>
+            <li><button class="tag sass">Sass</button></li>
+            <li><button class="tag ruby">Ruby</button></li>
+          </ul>
+        </section>
+        <section class="job-listing">
+          <img src="./assets/img/faceit.svg" alt="">
+          <p>
+            <span class="company-name">FaceIt</span>
+          </p>
+          <h1>
+            Junior Backend Developer
+          </h1>
+          <p>
+            2w ago - Full Time - UK only
+          </p>
+          <ul class="tags">
+            <li><button class="tag backend">Backend</button></li>
+            <li><button class="tag junior">Junior</button></li>
+            <li><button class="tag ruby">Ruby</button></li>
+            <li><button class="tag ror">RoR</button></li>
+          </ul>
+        </section>
+        <section class="job-listing">
+          <img src="./assets/img/shortly.svg" alt="">
+          <p>
+            <span class="company-name">Shortly</span>
+          </p>
+          <h1>
+            Junior Developer
+          </h1>
+          <p>
+            2w ago - Full Time - Worldwide
+          </p>
+          <ul class="tags">
+            <li><button class="tag frontend">Frontend</button></li>
+            <li><button class="tag junior">Junior</button></li>
+            <li><button class="tag html">HTML</button></li>
+            <li><button class="tag sass">Sass</button></li>
+            <li><button class="tag javascript">JavaScript</button></li>
+          </ul>
+        </section>
+        <section class="job-listing">
+          <img src="./assets/img/insure.svg" alt="">
+          <p>
+            <span class="company-name">Insure</span>
+          </p>
+          <h1>
+            Junior Frontend Developer
+          </h1>
+          <p>
+            2w ago - Full Time - USA only
+          </p>
+          <ul class="tags">
+            <li><button class="tag frontend">Frontend</button></li>
+            <li><button class="tag junior">Junior</button></li>
+            <li><button class="tag vue">Vue</button></li>
+            <li><button class="tag javascript">JavaScript</button></li>
+            <li><button class="tag sass">Sass</button></li>
+          </ul>
+        </section>
+        <section class="job-listing">
+          <img src="./assets/img/eyecam-co.svg" alt="">
+          <p>
+            <span class="company-name">Eyecam Co.</span>
+          </p>
+          <h1>
+            Full Stack Engineer
+          </h1>
+          <p>
+            3w ago - Full Time - Worldwide
+          </p>
+          <ul class="tags">
+            <li><button class="tag fullstack">Fullstack</button></li>
+            <li><button class="tag midweight">Midweight</button></li>
+            <li><button class="tag javascript">JavaScript</button></li>
+            <li><button class="tag django">Django</button></li>
+            <li><button class="tag python">Python</button></li>
+          </ul>
+        </section>
+        <section class="job-listing">
+          <img src="./assets/img/the-air-filter-company.svg" alt="">
+          <p>
+            <span class="company-name">The Air Filter Company</span>
+          </p>
+          <h1>
+            Front-end Dev
+          </h1>
+          <p>
+            1mo ago - Part Time - Worldwide
+          </p>
+          <ul class="tags">
+            <li><button class="tag frontend">Frontend</button></li>
+            <li><button class="tag junior">Junior</button></li>
+            <li><button class="tag react">React</button></li>
+            <li><button class="tag sass">Sass</button></li>
+            <li><button class="tag javascript">JavaScript</button></li>
+          </ul>
+        </section>
+      </div>
+    </main>
+        
+    <footer>
+      <p class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+        Coded by <a href="#">Ben</a>.
+      </p>
+    </footer>
 
-    <!-- Item Start -->
-    Loop Studios
-    Software Engineer
-    1w ago
-    Full Time
-    Worldwide
-    <!-- Role -->
-    Fullstack
-    <!-- Level -->
-    Midweight
-    <!-- Languages -->
-    JavaScript
-    Ruby
-    <!-- Tools -->
-    Sass
-    <!-- Item End -->
-
-    <!-- Item Start -->
-    FaceIt
-    Junior Backend Developer
-    2w ago
-    Full Time
-    UK only
-    <!-- Role -->
-    Backend
-    <!-- Level -->
-    Junior
-    <!-- Languages -->
-    Ruby
-    <!-- Tools -->
-    RoR
-    <!-- Item End -->
-
-    <!-- Item Start -->
-    Shortly
-    Junior Developer
-    2w ago
-    Full Time
-    Worldwide
-    <!-- Role -->
-    Frontend
-    <!-- Level -->
-    Junior
-    <!-- Languages -->
-    HTML
-    JavaScript
-    <!-- Tools -->
-    Sass
-    <!-- Item End -->
-
-    <!-- Item Start -->
-    Insure
-    Junior Frontend Developer
-    2w ago
-    Full Time
-    USA only
-    <!-- Role -->
-    Frontend
-    <!-- Level -->
-    Junior
-    <!-- Languages -->
-    JavaScript
-    <!-- Tools -->
-    Vue
-    Sass
-    <!-- Item End -->
-
-    <!-- Item Start -->
-    Eyecam Co.
-    Full Stack Engineer
-    3w ago
-    Full Time
-    Worldwide
-    <!-- Role -->
-    Fullstack
-    <!-- Level -->
-    Midweight
-    <!-- Languages -->
-    JavaScript
-    Python
-    <!-- Tools -->
-    Django
-    <!-- Item End -->
-
-    <!-- Item Start -->
-    The Air Filter Company
-    Front-end Dev
-    1mo ago
-    Part Time
-    Worldwide
-    <!-- Role -->
-    Frontend
-    <!-- Level -->
-    Junior
-    <!-- Languages -->
-    JavaScript
-    <!-- Tools -->
-    React
-    Sass
-    <!-- Item End -->
-    
-    <div class="attribution">
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-      Coded by <a href="#">Ben</a>.
-    </div>
+    <script src="./assets/js/app.js"></script>
   </body>
 </html>
