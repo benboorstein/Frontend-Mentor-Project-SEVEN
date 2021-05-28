@@ -42,24 +42,20 @@
     </header>
 
     <main>
-      <div id="job-listings">
-        <section class="job-listing">
+      <ul id="job-listings">
+        <li class="job-listing">
           <img src="./assets/img/photosnap.svg" alt="">
           <p>
             <span class="company-name">Photosnap</span> <span class="bubble-new">New!</span> <span class="bubble-featured">Featured</span>
           </p>
-          <h1>
-            Senior Frontend Developer
+          <h1 class="job-title">
+            <a href="#" target="_blank">Senior Frontend Developer</a>
           </h1>
-          <!-- QQQ: Which is better, doing the below as a <ul> (shown just below), or doing it as a <p> (as shown below the <ul>, commented out)? Obviously once I've decided which I'm going with then I'll change all the other ones further down in the code. -->
-          <ul class="3-details">
+          <ul class="three-details">
             <li>1d ago</li>
             <li>Full Time</li>
             <li>USA only</li>
           </ul>
-          <!-- <p class="3-details">
-            <span class="put-bullet-after">1d ago</span> <span class="put-bullet-after">Full Time</span> USA only      
-          </p> -->
           <ul class="tags">
             <li><button class="tag frontend">Frontend</button></li>
             <li><button class="tag senior">Senior</button></li>
@@ -67,36 +63,40 @@
             <li><button class="tag css">CSS</button></li>
             <li><button class="tag javascript">JavaScript</button></li>
           </ul>
-        </section>
-        <section class="job-listing">
+        </li>
+        <li class="job-listing">
           <img src="./assets/img/manage.svg" alt="">
           <p>
             <span class="company-name">Manage</span> <span class="bubble-new">New!</span> <span class="bubble-featured">Featured</span>
           </p>
-          <h1>
-            Fullstack Developer
+          <h1 class="job-title">
+            <a href="#" target="_blank">Fullstack Developer</a>
           </h1>
-          <p>
-            1d ago - Part Time - Remote
-          </p>
+          <ul class="three-details">
+            <li>1d ago</li>
+            <li>Part Time</li>
+            <li>Remote</li>
+          </ul>
           <ul class="tags">
             <li><button class="tag fullstack">Fullstack</button></li>
             <li><button class="tag midweight">Midweight</button></li>
             <li><button class="tag python">Python</button></li>
             <li><button class="tag react">React</button></li>
           </ul>
-        </section>
-        <section class="job-listing">
+        </li>
+        <li class="job-listing">
           <img src="./assets/img/account.svg" alt="">
           <p>
             <span class="company-name">Account</span> <span class="bubble-new">New!</span>
           </p>
-          <h1>
-            Junior Frontend Developer
+          <h1 class="job-title">
+            <a href="#" target="_blank">Junior Frontend Developer</a>
           </h1>
-          <p>
-            2d ago - Part Time - USA only
-          </p>
+          <ul class="three-details">
+            <li>2d ago</li>
+            <li>Part Time</li>
+            <li>USA only</li>
+          </ul>
           <ul class="tags">
             <li><button class="tag frontend">Frontend</button></li>
             <li><button class="tag junior">Junior</button></li>
@@ -104,36 +104,40 @@
             <li><button class="tag sass">Sass</button></li>
             <li><button class="tag javascript">JavaScript</button></li>
           </ul>
-        </section>
-        <section class="job-listing">
+        </li>
+        <li class="job-listing">
           <img src="./assets/img/myhome.svg" alt="">
           <p>
             <span class="company-name">MyHome</span>
           </p>
-          <h1>
-            Junior Frontend Developer
+          <h1 class="job-title">
+            <a href="#" target="_blank">Junior Frontend Developer</a>
           </h1>
-          <p>
-            5d ago - Contract - USA only
-          </p>
+          <ul class="three-details">
+            <li>5d ago</li>
+            <li>Contract</li>
+            <li>USA only</li>
+          </ul>
           <ul class="tags">
             <li><button class="tag frontend">Frontend</button></li>
             <li><button class="tag junior">Junior</button></li>
             <li><button class="tag css">CSS</button></li>
             <li><button class="tag javascript">JavaScript</button></li>
           </ul>
-        </section>
-        <section class="job-listing">
+        </li>
+        <li class="job-listing">
           <img src="./assets/img/loop-studios.svg" alt="">
           <p>
             <span class="company-name">Loop Studios</span>
           </p>
-          <h1>
-            Software Engineer
+          <h1 class="job-title">
+            <a href="#" target="_blank">Software Engineer</a>
           </h1>
-          <p>
-            1w ago - Full Time - Worldwide
-          </p>
+          <ul class="three-details">
+            <li>1w ago</li>
+            <li>Full Time</li>
+            <li>Worldwide</li>
+          </ul>
           <ul class="tags">
             <li><button class="tag fullstack">Fullstack</button></li>
             <li><button class="tag midweight">Midweight</button></li>
@@ -141,36 +145,43 @@
             <li><button class="tag sass">Sass</button></li>
             <li><button class="tag ruby">Ruby</button></li>
           </ul>
-        </section>
-        <section class="job-listing">
+        </li>
+        <li class="job-listing">
           <img src="./assets/img/faceit.svg" alt="">
           <p>
             <span class="company-name">FaceIt</span>
           </p>
-          <h1>
-            Junior Backend Developer
+          <h1 class="job-title">
+            <a href="#" target="_blank">Junior Backend Developer</a>
           </h1>
-          <p>
-            2w ago - Full Time - UK only
-          </p>
+          <ul class="three-details">
+            <li>2w ago</li>
+            <li>Full Time</li>
+            <li>UK only</li>
+          </ul>
           <ul class="tags">
             <li><button class="tag backend">Backend</button></li>
             <li><button class="tag junior">Junior</button></li>
             <li><button class="tag ruby">Ruby</button></li>
             <li><button class="tag ror">RoR</button></li>
           </ul>
-        </section>
-        <section class="job-listing">
+        </li>
+        <li class="job-listing">
           <img src="./assets/img/shortly.svg" alt="">
           <p>
             <span class="company-name">Shortly</span>
           </p>
-          <h1>
-            Junior Developer
+          <h1 class="job-title">
+            <a href="#" target="_blank">Junior Developer</a>
           </h1>
-          <p>
-            2w ago - Full Time - Worldwide
+          <p class="three-details">
+            <span class="put-bullet-after">2w ago</span> <span class="put-bullet-after">Full Time</span> Worldwide      
           </p>
+          <ul class="three-details">
+            <li>2w ago</li>
+            <li>Full Time</li>
+            <li>Worldwide</li>
+          </ul>
           <ul class="tags">
             <li><button class="tag frontend">Frontend</button></li>
             <li><button class="tag junior">Junior</button></li>
@@ -178,18 +189,20 @@
             <li><button class="tag sass">Sass</button></li>
             <li><button class="tag javascript">JavaScript</button></li>
           </ul>
-        </section>
-        <section class="job-listing">
+        </li>
+        <li class="job-listing">
           <img src="./assets/img/insure.svg" alt="">
           <p>
             <span class="company-name">Insure</span>
           </p>
-          <h1>
-            Junior Frontend Developer
+          <h1 class="job-title">
+            <a href="#" target="_blank">Junior Frontend Developer</a>
           </h1>
-          <p>
-            2w ago - Full Time - USA only
-          </p>
+          <ul class="three-details">
+            <li>2w ago</li>
+            <li>Full Time</li>
+            <li>USA only</li>
+          </ul>
           <ul class="tags">
             <li><button class="tag frontend">Frontend</button></li>
             <li><button class="tag junior">Junior</button></li>
@@ -197,18 +210,23 @@
             <li><button class="tag javascript">JavaScript</button></li>
             <li><button class="tag sass">Sass</button></li>
           </ul>
-        </section>
-        <section class="job-listing">
+        </li>
+        <li class="job-listing">
           <img src="./assets/img/eyecam-co.svg" alt="">
           <p>
             <span class="company-name">Eyecam Co.</span>
           </p>
-          <h1>
-            Full Stack Engineer
+          <h1 class="job-title">
+            <a href="#" target="_blank">Full Stack Engineer</a>
           </h1>
-          <p>
-            3w ago - Full Time - Worldwide
+          <p class="three-details">
+            <span class="put-bullet-after">3w ago</span> <span class="put-bullet-after">Full Time</span> Worldwide      
           </p>
+          <ul class="three-details">
+            <li>3w ago</li>
+            <li>Full Time</li>
+            <li>Worldwide</li>
+          </ul>
           <ul class="tags">
             <li><button class="tag fullstack">Fullstack</button></li>
             <li><button class="tag midweight">Midweight</button></li>
@@ -216,18 +234,20 @@
             <li><button class="tag django">Django</button></li>
             <li><button class="tag python">Python</button></li>
           </ul>
-        </section>
-        <section class="job-listing">
+        </li>
+        <li class="job-listing">
           <img src="./assets/img/the-air-filter-company.svg" alt="">
           <p>
             <span class="company-name">The Air Filter Company</span>
           </p>
-          <h1>
-            Front-end Dev
+          <h1 class="job-title">
+            <a href="#" target="_blank">Front-end Dev</a>
           </h1>
-          <p>
-            1mo ago - Part Time - Worldwide
-          </p>
+          <ul class="three-details">
+            <li>1mo ago</li>
+            <li>Part Time</li>
+            <li>Worldwide</li>
+          </ul>
           <ul class="tags">
             <li><button class="tag frontend">Frontend</button></li>
             <li><button class="tag junior">Junior</button></li>
@@ -235,8 +255,8 @@
             <li><button class="tag sass">Sass</button></li>
             <li><button class="tag javascript">JavaScript</button></li>
           </ul>
-        </section>
-      </div>
+        </li>
+      </ul>
     </main>
         
     <footer>
