@@ -42,7 +42,7 @@
     </header>
 
     <main>
-      <ul id="job-listings">
+      <ul id="app"> <!-- will I need this: ' id="job-listings" ' ? It's what I had before adding ' id="app" ' -->
 
         <!--
         Next, plan how you could map each of the property-value pairs from each data.json object to one of your 'job-listing' li's.
@@ -91,11 +91,16 @@
           <ul class="tags">
             <li><button class="tag">{{ dataArrObj.role }}</button></li>
             <li><button class="tag">{{ dataArrObj.level }}</button></li>
-            <li><button class="tag">{{ dataArrObj.languages[0] }}</button></li> <!-- QQQ: BUT PROBLEMATIC ON THIS LINE AND THE BELOW LINES because of how the 'languages' array is different in each 'dataArrObj', and then of course there are 'tools' arrays in some the 'dataArrObj's as well. -->
-            <li><button class="tag">{{ dataArrObj.languages[1] }}</button></li>
-            <li><button class="tag">{{ dataArrObj.languages[2] }}</button></li>
+            <ul v-for="language in dataArrObj.languages">
+              <li><button class="tag">{{ language }}</button></li>
+            </ul>
+            <ul v-for="tool in dataArrObj.tools">
+              <li><button class="tag">{{ tool }}</button></li>
+            </ul>
           </ul>
         </li>
+
+        
 
 
         
