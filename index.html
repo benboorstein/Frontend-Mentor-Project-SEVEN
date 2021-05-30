@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32x32.png">
 
     <!-- All of the two lines just below were verbatim pasted from fonts.google.com. Remember how this works re: font weights, etc. -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -55,54 +55,54 @@
         This will hopefully help solidify your understanding of one-way data-binding in Vue: from the JavaScript data object, you want to render as text each property's value.
         -->
 
-        <!--
+        <!-- just here for reference, then delete
         {
-        "id": 1,
-        "company": "Photosnap",
-        "logo": "./images/photosnap.svg",
-        "new": true,
-        "featured": true,
-        "position": "Senior Frontend Developer",
-        "role": "Frontend",
-        "level": "Senior",
-        "postedAt": "1d ago",
-        "contract": "Full Time",
-        "location": "USA Only",
-        "languages": ["HTML", "CSS", "JavaScript"],
-        "tools": []
+          "id": 1,
+          "company": "Photosnap",
+          "logo": "./assets/img/photosnap.svg",
+          "new": true,
+          "featured": true,
+          "position": "Senior Frontend Developer",
+          "role": "Frontend",
+          "level": "Senior",
+          "postedAt": "1d ago",
+          "contract": "Full Time",
+          "location": "USA Only",
+          "languages": ["HTML", "CSS", "JavaScript"],
+          "tools": []
         }
         -->
 
-        <!-- QQQ: At this point should I be doing anything with the above JSON 'id' property? -->
-        <li class="job-listing">
-          <img src="{{ logo }}" alt="">
-          <!-- QQQ: how do I properly handle 'logo' here?...because I don't think this is correctly done. Also, I have put the 'images' folder that is provided by FEM into an 'assets' folder, and I want to keep it that way, so should I just change every JSON instance of "./images/photosnap.svg" to "./assets/images/photosnap.svg" ? -->
+        <li class="job-listing" v-for="dataArrObj in dataArr">
+          <img src="{{ dataArrObj.logo }}" alt="">
           <p>
-            <span class="company-name">{{ company }}</span>
-            <span class="bubble-new">{{ new }}</span>
-            <span class="bubble-featured">{{ featured }}</span>
+            <span class="company-name">{{ dataArrObj.company }}</span>
+            <span class="bubble-new">{{ dataArrObj.new }}</span>
+            <span class="bubble-featured">{{ dataArrObj.featured }}</span>
           </p>
           <h1 class="job-title">
-            <a href="#" target="_blank">{{ position }}</a>
+            <a href="#" target="_blank">{{ dataArrObj.position }}</a>
           </h1>
           <ul class="three-details">
-            <li>{{ postedAt }}</li>
-            <li>{{ contract }}</li>
-            <li>{{ location }}</li>
+            <li>{{ dataArrObj.postedAt }}</li>
+            <li>{{ dataArrObj.contract }}</li>
+            <li>{{ dataArrObj.location }}</li>
           </ul>
           <ul class="tags">
-            <li><button class="tag frontend">{{ role }}</button></li>
-            <li><button class="tag senior">{{ level }}</button></li>
-            <li><button class="tag html">{{ languages[0] }}</button></li>
-            <li><button class="tag css">{{ languages[1] }}</button></li>
-            <li><button class="tag javascript">{{ languages[2] }}</button></li>
+            <li><button class="tag">{{ dataArrObj.role }}</button></li>
+            <li><button class="tag">{{ dataArrObj.level }}</button></li>
+            <li><button class="tag">{{ dataArrObj.languages[0] }}</button></li> <!-- QQQ: BUT PROBLEMATIC ON THIS LINE AND THE BELOW LINES because of how the 'languages' array is different in each 'dataArrObj', and then of course there are 'tools' arrays in some the 'dataArrObj's as well. -->
+            <li><button class="tag">{{ dataArrObj.languages[1] }}</button></li>
+            <li><button class="tag">{{ dataArrObj.languages[2] }}</button></li>
           </ul>
         </li>
 
 
+        
+
         <!-- ////////////////////////////////////// -->
         <li class="job-listing">
-          <img src="./assets/images/manage.svg" alt="">
+          <img src="./assets/img/manage.svg" alt="">
           <p>
             <span class="company-name">Manage</span> <span class="bubble-new">New!</span> <span class="bubble-featured">Featured</span>
           </p>
@@ -122,7 +122,7 @@
           </ul>
         </li>
         <li class="job-listing">
-          <img src="./assets/images/account.svg" alt="">
+          <img src="./assets/img/account.svg" alt="">
           <p>
             <span class="company-name">Account</span> <span class="bubble-new">New!</span>
           </p>
@@ -143,7 +143,7 @@
           </ul>
         </li>
         <li class="job-listing">
-          <img src="./assets/images/myhome.svg" alt="">
+          <img src="./assets/img/myhome.svg" alt="">
           <p>
             <span class="company-name">MyHome</span>
           </p>
@@ -163,7 +163,7 @@
           </ul>
         </li>
         <li class="job-listing">
-          <img src="./assets/images/loop-studios.svg" alt="">
+          <img src="./assets/img/loop-studios.svg" alt="">
           <p>
             <span class="company-name">Loop Studios</span>
           </p>
@@ -184,7 +184,7 @@
           </ul>
         </li>
         <li class="job-listing">
-          <img src="./assets/images/faceit.svg" alt="">
+          <img src="./assets/img/faceit.svg" alt="">
           <p>
             <span class="company-name">FaceIt</span>
           </p>
@@ -204,7 +204,7 @@
           </ul>
         </li>
         <li class="job-listing">
-          <img src="./assets/images/shortly.svg" alt="">
+          <img src="./assets/img/shortly.svg" alt="">
           <p>
             <span class="company-name">Shortly</span>
           </p>
@@ -228,7 +228,7 @@
           </ul>
         </li>
         <li class="job-listing">
-          <img src="./assets/images/insure.svg" alt="">
+          <img src="./assets/img/insure.svg" alt="">
           <p>
             <span class="company-name">Insure</span>
           </p>
@@ -249,7 +249,7 @@
           </ul>
         </li>
         <li class="job-listing">
-          <img src="./assets/images/eyecam-co.svg" alt="">
+          <img src="./assets/img/eyecam-co.svg" alt="">
           <p>
             <span class="company-name">Eyecam Co.</span>
           </p>
@@ -273,7 +273,7 @@
           </ul>
         </li>
         <li class="job-listing">
-          <img src="./assets/images/the-air-filter-company.svg" alt="">
+          <img src="./assets/img/the-air-filter-company.svg" alt="">
           <p>
             <span class="company-name">The Air Filter Company</span>
           </p>
