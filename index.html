@@ -21,8 +21,6 @@
     <title>Frontend Mentor | Job Listings</title>
   </head>
 
-  <body>
-
 <!--
 1) what prompts the appearance of the filter? Maybe going to a particular job posting and then clicking on one of this job posting's "Frontend"/"Senior"/"HTML"/"CSS"/"JavaScript" buttons?
   - Correct. On page load, there's no filter section. As soon as a user clicks on one of the technology 'pills' a.k.a. 'tags', the filter section will appear, showing that selected tag.
@@ -32,282 +30,62 @@
   - Correct. It is keeping track of the selected tags, and only presenting jobs with all of those tags, among any others that job may feature
 -->
 
-    <header>
-      <section class="is-hidden" id="filter">
-        <button id="clear-filter">Clear</button>
-        <ul>
-          <!-- Is this a good spot for the tags to eventually be added to? -->
+  <body>
+    
+    <div id="app">
+
+      <header v-if="filters.length">
+        <section class="is-hidden" id="filter">
+          <button id="clear-filter">Clear</button>
+          <ul>
+            <li v-for="filter in filters">
+              <button>{{ filter }}</button>
+            </li>
+          </ul>
+        </section>
+      </header>
+
+      <main>
+        <ul id="job-listings">
+          <li class="job-listing" v-for="dataArrObj in dataArr" :key="dataArrObj.id"> <!-- whenever doing a 'v-for', ':key' (short for 'v-bind:key') is needed to uniquely identify each one -->
+            <img :src="dataArrObj.logo" alt=""> <!-- v-bind (a directive) is the syntax for hooking into the attr of a html element  -->
+            <p>
+              <span class="company-name">{{ dataArrObj.company }}</span>
+              <span class="bubble-new" v-if="dataArrObj.new == true">New!</span>
+              <span class="bubble-featured" v-if="dataArrObj.featured == true">Featured</span>
+            </p>
+            <h1 class="job-title">
+              <a href="#" target="_blank">{{ dataArrObj.position }}</a>
+            </h1>
+            <ul class="three-details">
+              <li>{{ dataArrObj.postedAt }}</li>
+              <li>{{ dataArrObj.contract }}</li>
+              <li>{{ dataArrObj.location }}</li>
+            </ul>
+            <ul class="tags">
+              <li><button @click="blah(dataArrObj.role)" class="tag">{{ dataArrObj.role }}</button></li> <!-- '@click' is short for 'v-on:click' -->
+              <li><button @click="blah(dataArrObj.level)" class="tag">{{ dataArrObj.level }}</button></li>
+              <li v-for="language in dataArrObj.languages" :key="language" v-if="dataArrObj.languages.length">
+                <button @click="blah(language)" class="tag">{{ language }}</button>
+              </li> <!-- 'dataArrObj.languages.length' is enough because if it evaluates to '0' it will evaluate to 'false' because '0' is 'falsy', etc. -->
+              <li v-for="tool in dataArrObj.tools" :key="tool" v-if="dataArrObj.languages.length">
+                <button @click="blah(tool)" class="tag">{{ tool }}</button>
+              </li>
+            </ul>
+          </li>
         </ul>
-      </section>
-    </header>
+      </main>
+          
+      <footer>
+        <p class="attribution">
+          Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+          Coded by <a href="#">Ben</a>.
+        </p>
+      </footer>
 
-    <main>
-      <ul id="app"> <!-- will I need this: ' id="job-listings" ' ? It's what I had before adding ' id="app" ' -->
+    </div>
 
-        <!--
-        Next, plan how you could map each of the property-value pairs from each data.json object to one of your 'job-listing' li's.
-        - Pick any one of your <li>s
-        - Find the matching JSON object in data.json
-        - Replace your hard-coded content with the corresponding property name in the JSON object
-        - Try to use the {{ }} syntax when doing this
-        - So replace <a href="#" target="_blank">Senior Frontend Developer</a> with <a href="#" target="_blank">{{ position }}</a>
-
-        This will hopefully help solidify your understanding of one-way data-binding in Vue: from the JavaScript data object, you want to render as text each property's value.
-        -->
-
-        <!-- just here for reference, then delete
-        {
-          "id": 1,
-          "company": "Photosnap",
-          "logo": "./assets/img/photosnap.svg",
-          "new": true,
-          "featured": true,
-          "position": "Senior Frontend Developer",
-          "role": "Frontend",
-          "level": "Senior",
-          "postedAt": "1d ago",
-          "contract": "Full Time",
-          "location": "USA Only",
-          "languages": ["HTML", "CSS", "JavaScript"],
-          "tools": []
-        }
-        -->
-
-        <li class="job-listing" v-for="dataArrObj in dataArr">
-          <img src="{{ dataArrObj.logo }}" alt="">
-          <p>
-            <span class="company-name">{{ dataArrObj.company }}</span>
-            <span class="bubble-new">{{ dataArrObj.new }}</span>
-            <span class="bubble-featured">{{ dataArrObj.featured }}</span>
-          </p>
-          <h1 class="job-title">
-            <a href="#" target="_blank">{{ dataArrObj.position }}</a>
-          </h1>
-          <ul class="three-details">
-            <li>{{ dataArrObj.postedAt }}</li>
-            <li>{{ dataArrObj.contract }}</li>
-            <li>{{ dataArrObj.location }}</li>
-          </ul>
-          <ul class="tags">
-            <li><button class="tag">{{ dataArrObj.role }}</button></li>
-            <li><button class="tag">{{ dataArrObj.level }}</button></li>
-            <ul v-for="language in dataArrObj.languages">
-              <li><button class="tag">{{ language }}</button></li>
-            </ul>
-            <ul v-for="tool in dataArrObj.tools">
-              <li><button class="tag">{{ tool }}</button></li>
-            </ul>
-          </ul>
-        </li>
-
-        
-
-
-        
-
-        <!-- ////////////////////////////////////// -->
-        <li class="job-listing">
-          <img src="./assets/img/manage.svg" alt="">
-          <p>
-            <span class="company-name">Manage</span> <span class="bubble-new">New!</span> <span class="bubble-featured">Featured</span>
-          </p>
-          <h1 class="job-title">
-            <a href="#" target="_blank">Fullstack Developer</a>
-          </h1>
-          <ul class="three-details">
-            <li>1d ago</li>
-            <li>Part Time</li>
-            <li>Remote</li>
-          </ul>
-          <ul class="tags">
-            <li><button class="tag fullstack">Fullstack</button></li>
-            <li><button class="tag midweight">Midweight</button></li>
-            <li><button class="tag python">Python</button></li>
-            <li><button class="tag react">React</button></li>
-          </ul>
-        </li>
-        <li class="job-listing">
-          <img src="./assets/img/account.svg" alt="">
-          <p>
-            <span class="company-name">Account</span> <span class="bubble-new">New!</span>
-          </p>
-          <h1 class="job-title">
-            <a href="#" target="_blank">Junior Frontend Developer</a>
-          </h1>
-          <ul class="three-details">
-            <li>2d ago</li>
-            <li>Part Time</li>
-            <li>USA only</li>
-          </ul>
-          <ul class="tags">
-            <li><button class="tag frontend">Frontend</button></li>
-            <li><button class="tag junior">Junior</button></li>
-            <li><button class="tag react">React</button></li>
-            <li><button class="tag sass">Sass</button></li>
-            <li><button class="tag javascript">JavaScript</button></li>
-          </ul>
-        </li>
-        <li class="job-listing">
-          <img src="./assets/img/myhome.svg" alt="">
-          <p>
-            <span class="company-name">MyHome</span>
-          </p>
-          <h1 class="job-title">
-            <a href="#" target="_blank">Junior Frontend Developer</a>
-          </h1>
-          <ul class="three-details">
-            <li>5d ago</li>
-            <li>Contract</li>
-            <li>USA only</li>
-          </ul>
-          <ul class="tags">
-            <li><button class="tag frontend">Frontend</button></li>
-            <li><button class="tag junior">Junior</button></li>
-            <li><button class="tag css">CSS</button></li>
-            <li><button class="tag javascript">JavaScript</button></li>
-          </ul>
-        </li>
-        <li class="job-listing">
-          <img src="./assets/img/loop-studios.svg" alt="">
-          <p>
-            <span class="company-name">Loop Studios</span>
-          </p>
-          <h1 class="job-title">
-            <a href="#" target="_blank">Software Engineer</a>
-          </h1>
-          <ul class="three-details">
-            <li>1w ago</li>
-            <li>Full Time</li>
-            <li>Worldwide</li>
-          </ul>
-          <ul class="tags">
-            <li><button class="tag fullstack">Fullstack</button></li>
-            <li><button class="tag midweight">Midweight</button></li>
-            <li><button class="tag javascript">JavaScript</button></li>
-            <li><button class="tag sass">Sass</button></li>
-            <li><button class="tag ruby">Ruby</button></li>
-          </ul>
-        </li>
-        <li class="job-listing">
-          <img src="./assets/img/faceit.svg" alt="">
-          <p>
-            <span class="company-name">FaceIt</span>
-          </p>
-          <h1 class="job-title">
-            <a href="#" target="_blank">Junior Backend Developer</a>
-          </h1>
-          <ul class="three-details">
-            <li>2w ago</li>
-            <li>Full Time</li>
-            <li>UK only</li>
-          </ul>
-          <ul class="tags">
-            <li><button class="tag backend">Backend</button></li>
-            <li><button class="tag junior">Junior</button></li>
-            <li><button class="tag ruby">Ruby</button></li>
-            <li><button class="tag ror">RoR</button></li>
-          </ul>
-        </li>
-        <li class="job-listing">
-          <img src="./assets/img/shortly.svg" alt="">
-          <p>
-            <span class="company-name">Shortly</span>
-          </p>
-          <h1 class="job-title">
-            <a href="#" target="_blank">Junior Developer</a>
-          </h1>
-          <p class="three-details">
-            <span class="put-bullet-after">2w ago</span> <span class="put-bullet-after">Full Time</span> Worldwide      
-          </p>
-          <ul class="three-details">
-            <li>2w ago</li>
-            <li>Full Time</li>
-            <li>Worldwide</li>
-          </ul>
-          <ul class="tags">
-            <li><button class="tag frontend">Frontend</button></li>
-            <li><button class="tag junior">Junior</button></li>
-            <li><button class="tag html">HTML</button></li>
-            <li><button class="tag sass">Sass</button></li>
-            <li><button class="tag javascript">JavaScript</button></li>
-          </ul>
-        </li>
-        <li class="job-listing">
-          <img src="./assets/img/insure.svg" alt="">
-          <p>
-            <span class="company-name">Insure</span>
-          </p>
-          <h1 class="job-title">
-            <a href="#" target="_blank">Junior Frontend Developer</a>
-          </h1>
-          <ul class="three-details">
-            <li>2w ago</li>
-            <li>Full Time</li>
-            <li>USA only</li>
-          </ul>
-          <ul class="tags">
-            <li><button class="tag frontend">Frontend</button></li>
-            <li><button class="tag junior">Junior</button></li>
-            <li><button class="tag vue">Vue</button></li>
-            <li><button class="tag javascript">JavaScript</button></li>
-            <li><button class="tag sass">Sass</button></li>
-          </ul>
-        </li>
-        <li class="job-listing">
-          <img src="./assets/img/eyecam-co.svg" alt="">
-          <p>
-            <span class="company-name">Eyecam Co.</span>
-          </p>
-          <h1 class="job-title">
-            <a href="#" target="_blank">Full Stack Engineer</a>
-          </h1>
-          <p class="three-details">
-            <span class="put-bullet-after">3w ago</span> <span class="put-bullet-after">Full Time</span> Worldwide      
-          </p>
-          <ul class="three-details">
-            <li>3w ago</li>
-            <li>Full Time</li>
-            <li>Worldwide</li>
-          </ul>
-          <ul class="tags">
-            <li><button class="tag fullstack">Fullstack</button></li>
-            <li><button class="tag midweight">Midweight</button></li>
-            <li><button class="tag javascript">JavaScript</button></li>
-            <li><button class="tag django">Django</button></li>
-            <li><button class="tag python">Python</button></li>
-          </ul>
-        </li>
-        <li class="job-listing">
-          <img src="./assets/img/the-air-filter-company.svg" alt="">
-          <p>
-            <span class="company-name">The Air Filter Company</span>
-          </p>
-          <h1 class="job-title">
-            <a href="#" target="_blank">Front-end Dev</a>
-          </h1>
-          <ul class="three-details">
-            <li>1mo ago</li>
-            <li>Part Time</li>
-            <li>Worldwide</li>
-          </ul>
-          <ul class="tags">
-            <li><button class="tag frontend">Frontend</button></li>
-            <li><button class="tag junior">Junior</button></li>
-            <li><button class="tag react">React</button></li>
-            <li><button class="tag sass">Sass</button></li>
-            <li><button class="tag javascript">JavaScript</button></li>
-          </ul>
-        </li>
-      </ul>
-    </main>
-        
-    <footer>
-      <p class="attribution">
-        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-        Coded by <a href="#">Ben</a>.
-      </p>
-    </footer>
-
+    <script src="https://unpkg.com/vue@next"></script>
     <script src="./assets/js/app.js"></script>
   </body>
 </html>

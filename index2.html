@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+        <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32x32.png">
+
+        <!-- All of the two lines just below were verbatim pasted from fonts.google.com. Remember how this works re: font weights, etc. -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@500;700&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="./assets/css/style.css"> <!--always put this line after fonts because of how things load-->
+        <!-- "./" means "from right here". "../" means "go up a level". And, from a site:
+        Here is all you need to know about relative file paths:
+            Starting with “/” returns to the root directory and starts there
+            Starting with “../” moves one directory backwards and starts there
+            Starting with “../../” moves two directories backwards and starts there (and so on…)
+            To move forward, just start with the first subdirectory and keep moving forward -->
+        
+        <title>Frontend Mentor | Job Listings</title>
+    </head>
+
+    <body>
+
+        <div id="app">
+
+            <header v-if="filters.length">
+                <section id="filter">
+                    <ul>
+                        <li v-for="filter in filters" :key="">
+                            <button>{{ filter }}</button>
+                        </li> <!-- QQQ: Can't remember / figure out what goes in ':key' here. -->
+                    </ul>
+                    <button>Clear</button>
+                </section>
+            </header>
+
+            <main>
+                <section class="job-listing" v-for="dataArrObj in dataArr" :key="dataArrObj.id">
+                    <img v-bind:src="dataArrObj.logo" alt="">
+                    <p>
+                        <span class="company-name">{{ dataArrObj.company }}</span>
+                        <span class="bubble-new" v-if="dataArrObj.new == true">New!</span>
+                        <span class="bubble-featured" v-if="dataArrObj.featured == true">Featured</span>
+                    </p>
+                    <h1 class="job-title">{{ dataArrObj.position }}</h1>
+                    <ul class="three-details">
+                        <li>{{ dataArrObj.postedAt }}</li>
+                        <li>{{ dataArrObj.contract }}</li>
+                        <li>{{ dataArrObj.location }}</li>
+                    </ul>
+                    <ul class="tags">
+                        <li class="tag">
+                            <button v-on:click="blah(dataArrObj.role)">{{ dataArrObj.role }}</button>
+                        </li>
+                        <li class="tag">
+                            <button v-on:click="blah(dataArrObj.level)">{{ dataArrObj.level }}</button>
+                        </li>
+                        <li class="tag" v-for="language in dataArrObj.languages" :key="" v-if="dataArrObj.languages.length"> <!-- QQQ: Can't remember / figure out what goes in ':key' here. -->
+                            <button v-on:click="blah(language)">{{ language }}</button>
+                        </li>
+                        <li class="tag" v-for="tool in dataArrObj.tools" :key="" v-if="dataArrObj.tools.length"> <!-- QQQ: Can't remember / figure out what goes in ':key' here. -->
+                            <button v-on:click="blah(tool)">{{ tool }}</button>
+                        </li>
+                    </ul>
+                </section>
+            </main>
+                
+            <footer>
+                <p class="attribution">
+                    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+                    Coded by <a href="#">Ben</a>.
+                </p>
+            </footer>
+
+        </div>
+
+        <script src="https://unpkg.com/vue@next"></script>
+        <script src="./assets/js/app.js"></script>
+    </body>
+</html>
