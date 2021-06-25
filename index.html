@@ -21,7 +21,7 @@
     <title>Frontend Mentor | Job Listings</title>
   </head>
 
-<!--
+<!-- Basics of how the page works (keep for now):
 1) what prompts the appearance of the filter? Maybe going to a particular job posting and then clicking on one of this job posting's "Frontend"/"Senior"/"HTML"/"CSS"/"JavaScript" buttons?
   - Correct. On page load, there's no filter section. As soon as a user clicks on one of the technology 'pills' a.k.a. 'tags', the filter section will appear, showing that selected tag.
 2) what items/descriptors are included in the filter upon its initial appearance?  Maybe with ALL POSSIBLE descriptors ("Frontend" and "Senior" and "JavaScript" and "CSS" and "HTML" and "Junior" and "React", and so on)?
@@ -35,20 +35,22 @@
     <div id="app">
 
       <header v-if="filters.length">
-        <section class="is-hidden" id="filter">
-          <button id="clear-filter">Clear</button>
+        <section id="filter">
           <ul>
-            <li v-for="filter in filters">
+            <li v-for="filter in filters" :key="filter"> <!-- ':key' must be a unique value. That's the only rule. -->
               <button>{{ filter }}</button>
             </li>
           </ul>
+          <button id="clear-filter" @click="clearFilter(filters)">Clear</button>
         </section>
       </header>
 
       <main>
+        <!-- Question: Why use a <ul> (instead of, say, a <section>) when this <ul> appears to have just one <li> child? -->
+        <!-- Answer: Your HTML is now (given Vue) a template. That template is used to generate (clone) list items for each object in your JS array. If you inspect the page and look at the Elements tab, you'll see several list items. -->
         <ul id="job-listings">
           <li class="job-listing" v-for="dataArrObj in dataArr" :key="dataArrObj.id"> <!-- whenever doing a 'v-for', ':key' (short for 'v-bind:key') is needed to uniquely identify each one -->
-            <img :src="dataArrObj.logo" alt=""> <!-- v-bind (a directive) is the syntax for hooking into the attr of a html element  -->
+            <img :src="dataArrObj.logo" alt=""> <!-- ':src' is short for 'v-bind:src', it's a Vue directive, and it hooks into the attribute of an HTML element. Generally, 'v-bind' connects something in the template with something in the instance -->
             <p>
               <span class="company-name">{{ dataArrObj.company }}</span>
               <span class="bubble-new" v-if="dataArrObj.new == true">New!</span>
@@ -63,13 +65,17 @@
               <li>{{ dataArrObj.location }}</li>
             </ul>
             <ul class="tags">
-              <li><button @click="blah(dataArrObj.role)" class="tag">{{ dataArrObj.role }}</button></li> <!-- '@click' is short for 'v-on:click' -->
-              <li><button @click="blah(dataArrObj.level)" class="tag">{{ dataArrObj.level }}</button></li>
-              <li v-for="language in dataArrObj.languages" :key="language" v-if="dataArrObj.languages.length">
-                <button @click="blah(language)" class="tag">{{ language }}</button>
+              <li class="tag">
+                <button @click="addTagToFilter(dataArrObj.role)">{{ dataArrObj.role }}</button> <!-- '@click' is short for 'v-on:click' -->
+              </li> 
+              <li class="tag">
+                <button @click="addTagToFilter(dataArrObj.level)">{{ dataArrObj.level }}</button>
+              </li>
+              <li class="tag" v-for="language in dataArrObj.languages" :key="language" v-if="dataArrObj.languages.length">
+                <button @click="addTagToFilter(language)">{{ language }}</button>
               </li> <!-- 'dataArrObj.languages.length' is enough because if it evaluates to '0' it will evaluate to 'false' because '0' is 'falsy', etc. -->
-              <li v-for="tool in dataArrObj.tools" :key="tool" v-if="dataArrObj.languages.length">
-                <button @click="blah(tool)" class="tag">{{ tool }}</button>
+              <li class="tag" v-for="tool in dataArrObj.tools" :key="tool" v-if="dataArrObj.tools.length">
+                <button @click="addTagToFilter(tool)">{{ tool }}</button>
               </li>
             </ul>
           </li>
