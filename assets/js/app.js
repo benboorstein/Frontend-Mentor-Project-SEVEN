@@ -156,27 +156,32 @@ const App = {
             filters: []
         }
     },
-    methods: {
-        // VERSION THAT WORKS:
-        // addTagToFilter(tag) {
-        //     if (!this.filters.includes(tag)) {
-        //         this.filters.push(tag) // 'this' in Vue is referring to the Vue instance
-        //     }
-        // },
-        addTagToFilter(tag) {
-            if (!this.filters.includes(tag)) {
-                this.filters.push(tag)
+    computed: {
+        filteredDataArr() {
+            if (this.filters.length == 0) {
+                return this.dataArr
+            } else {
+                let matches = []
+                this.filters.forEach(filtersItem => {
+                    this.dataArr.filter(listing => { ///////////
+                        if (listing[filtersItem.key].includes(filtersItem.value)) { // 'includes()' does also work for the regular key-value pairs, e.g., "role": "Frontend", not just for the key-value pairs with array values, e.g., "languages": ["HTML", "CSS", "JavaScript"]
+                            matches.push(listing)
+                        }  
+                    })
+                })
+                return matches
             }
-
-            // The basic pseudocode is: If the tag clicked is not in the object, actually remove the object.
-            for (let i = 0; i < this.dataArr.length; i++) {
-                if (/*!tag in this.dataArr[i]*/ !Object.values(this.dataArr[i]).includes(tag)) {
-                    this.dataArr.splice(this.dataArr[this.dataArr[i].id - 1], 1)
-                }                    
+        }
+    },
+    methods: {
+        addTagToFilter(tag, prop) {
+            console.log(tag, prop)
+            if (!this.filters.includes(tag)) { // 'this' in Vue is referring to the Vue instance
+                this.filters.push({key: prop, value: tag}) // pushing, e.g.: key: 'role', value: 'Frontend'
             }
         },
-        clearFilter(arr) {
-            arr.length = 0
+        clearFilter() {
+            this.filters = []
         }
     }
 }

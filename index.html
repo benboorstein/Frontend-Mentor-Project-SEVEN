@@ -38,10 +38,10 @@
         <section id="filter">
           <ul>
             <li v-for="filter in filters" :key="filter"> <!-- ':key' must be a unique value. That's the only rule. -->
-              <button>{{ filter }}</button>
+              <button>{{ filter.value }}</button>
             </li>
           </ul>
-          <button id="clear-filter" @click="clearFilter(filters)">Clear</button>
+          <button id="clear-filter" @click="clearFilter()">Clear</button>
         </section>
       </header>
 
@@ -49,7 +49,7 @@
         <!-- Question: Why use a <ul> (instead of, say, a <section>) when this <ul> appears to have just one <li> child? -->
         <!-- Answer: Your HTML is now (given Vue) a template. That template is used to generate (clone) list items for each object in your JS array. If you inspect the page and look at the Elements tab, you'll see several list items. -->
         <ul id="job-listings">
-          <li class="job-listing" v-for="dataArrObj in dataArr" :key="dataArrObj.id"> <!-- whenever doing a 'v-for', ':key' (short for 'v-bind:key') is needed to uniquely identify each one -->
+          <li class="job-listing" v-for="dataArrObj in filteredDataArr" :key="dataArrObj.id"> <!-- whenever doing a 'v-for', ':key' (short for 'v-bind:key') is needed to uniquely identify each one -->
             <img :src="dataArrObj.logo" alt=""> <!-- ':src' is short for 'v-bind:src', it's a Vue directive, and it hooks into the attribute of an HTML element. Generally, 'v-bind' connects something in the template with something in the instance -->
             <p>
               <span class="company-name">{{ dataArrObj.company }}</span>
@@ -66,16 +66,16 @@
             </ul>
             <ul class="tags">
               <li class="tag">
-                <button @click="addTagToFilter(dataArrObj.role)">{{ dataArrObj.role }}</button> <!-- '@click' is short for 'v-on:click' -->
+                <button @click="addTagToFilter(dataArrObj.role, 'role')">{{ dataArrObj.role }}</button> <!-- '@click' is short for 'v-on:click' -->
               </li> 
               <li class="tag">
-                <button @click="addTagToFilter(dataArrObj.level)">{{ dataArrObj.level }}</button>
+                <button @click="addTagToFilter(dataArrObj.level, 'level')">{{ dataArrObj.level }}</button>
               </li>
               <li class="tag" v-for="language in dataArrObj.languages" :key="language" v-if="dataArrObj.languages.length">
-                <button @click="addTagToFilter(language)">{{ language }}</button>
+                <button @click="addTagToFilter(language, 'languages')">{{ language }}</button>
               </li> <!-- 'dataArrObj.languages.length' is enough because if it evaluates to '0' it will evaluate to 'false' because '0' is 'falsy', etc. -->
               <li class="tag" v-for="tool in dataArrObj.tools" :key="tool" v-if="dataArrObj.tools.length">
-                <button @click="addTagToFilter(tool)">{{ tool }}</button>
+                <button @click="addTagToFilter(tool, 'tools')">{{ tool }}</button>
               </li>
             </ul>
           </li>
