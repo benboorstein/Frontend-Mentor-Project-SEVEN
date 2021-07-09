@@ -157,19 +157,35 @@ const App = {
         }
     },
     computed: {
+        // Current challenge: make it work when several buttons are clicked consecutively. You somehow need to store things or something
+        /* His relevant email:
+        - Yes, we are not taking advantage of filter right now.
+        - Yes, map offers another way to iterate through an array, though it is designed to change each value. So it is not the right solution.
+        - You need a way to begin with an array identical to dataArr, and continually remove items from that new array each iteration through ‘filters’.
+        - Crazily enough, the solution - I think - requires only two small changes to your current code on lines 181-185.
+        */
         filteredDataArr() {
             if (this.filters.length == 0) {
                 return this.dataArr
             } else {
-                let matches = []
+                //////// SECOND version that doesn't work for even the first tag clicked:
                 this.filters.forEach(filtersItem => {
-                    this.dataArr.filter(listing => { ///////////
-                        if (listing[filtersItem.key].includes(filtersItem.value)) { // 'includes()' does also work for the regular key-value pairs, e.g., "role": "Frontend", not just for the key-value pairs with array values, e.g., "languages": ["HTML", "CSS", "JavaScript"]
-                            matches.push(listing)
-                        }  
-                    })
+                    this.dataArr.filter(listing => listing[filtersItem.key].includes(filtersItem.value))
                 })
-                return matches
+                // QQQ: I know that forEach() returns 'undefined', but I don't think that's the problem here, because 1) filter() returns a new array, 2) all the listings in the UI are being removed (not what I want), and 3) replacing forEach() with map() (which does return a value other than 'undefined') has the same effect.
+                ////////////////////////////////////
+
+                // //////// FIRST version that works for just the first tag clicked:
+                // let matches = []
+                // this.filters.forEach(filtersItem => {
+                //     this.dataArr.filter(listing => { // QQQ: If don't end up actually using what 'filter()' does, use 'forEach()' instead 
+                //         if (listing[filtersItem.key].includes(filtersItem.value)) { // 'includes()' does also work for the regular key-value pairs, e.g., "role": "Frontend", not just for the key-value pairs with array values, e.g., "languages": ["HTML", "CSS", "JavaScript"]
+                //             matches.push(listing)
+                //         }  
+                //     })
+                // })
+                // return matches
+                // ////////////////////////////////////
             }
         }
     },
@@ -177,7 +193,7 @@ const App = {
         addTagToFilter(tag, prop) {
             console.log(tag, prop)
             if (!this.filters.includes(tag)) { // 'this' in Vue is referring to the Vue instance
-                this.filters.push({key: prop, value: tag}) // pushing, e.g.: key: 'role', value: 'Frontend'
+                this.filters.push({ key: prop, value: tag }) // pushing, for example: key: 'role', value: 'Frontend'
             }
         },
         clearFilter() {
