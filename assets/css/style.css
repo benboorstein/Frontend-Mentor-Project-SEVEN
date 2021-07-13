@@ -19,25 +19,60 @@ html, body {
 
 body {
   font-family: 'Spartan', sans-serif;
+  background-color: hsl(180, 52%, 96%);
 }
-
 
 /****************************************
 header
 ****************************************/
 
+header img {
+  position: relative; /* Why is this needed here? Because of #2 here: https://www.freecodecamp.org/news/4-reasons-your-z-index-isnt-working-and-how-to-fix-it-coder-coder-6bc05f103e6c/ */
+  min-width: 100%;
+  max-height: 200px;
+  background-color: hsl(180, 29%, 50%);
+  z-index: -1;
+}
 
 /****************************************
 main
 ****************************************/
+
+main {
+  padding: 0 25px 0 25px;
+}
+
+#filter {
+  background-color: white;
+  margin-top: -50px;
+  border-radius: 6px;
+}
+
+/* LEFT OFF HERE
+#clear-filter {
+  position: relative;
+  float: right;
+  margin-top: -50px;
+} */
+
+#job-listings {
+  padding: 0;
+  margin-top: 95px;
+}
 
 li {
   list-style-type: none;
 }
 
 .job-listing {
-  margin-top: 30px; /* I may remove this...like if I end up using flexbox to position the .job-listing items */
-  background-color: lightblue; /* just here for now so I can see where the element is*/
+  margin-top: 75px;
+  background-color: white;
+  border-radius: 6px;
+}
+
+.logo {
+  margin-top: -44px;
+  margin-left: 45px;
 }
 
 .company-name {
@@ -112,6 +147,7 @@ footer
 .attribution {
   text-align: center;
   font-size: 11px;
+  margin-bottom: 0;
 }
 
 .attribution a {
