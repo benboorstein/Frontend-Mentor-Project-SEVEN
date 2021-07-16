@@ -38,13 +38,22 @@
       
       <main>
         <section id="filter" v-if="filters.length">
-          <ul>
-            <li v-for="filter in filters" :key="filter"> <!-- ':key' must be a unique value. That's the only rule. -->
+          <ul id="filter-tags">
+            <li v-for="filter in filters" :key="filter" class="filter-tag"> <!-- ':key' must be a unique value. That's the only rule. --> 
               <button @click="removeTagFromFilter(filter)">{{ filter.value }} <span>x</span></button>
             </li>
           </ul>
-          <button id="clear-filter" @click="clearFilter()">Clear</button>
+          <!-- <ul >
+            <li> -->
+              <button @click="clearFilter()" id="clear-filter">Clear</button>
+            <!-- </li>
+          </ul> -->
         </section>
+
+
+
+
+
         <!-- Question: Why use a <ul> (instead of, say, a <section>) when this <ul> appears to have just one <li> child? -->
         <!-- Answer: Your HTML is now (given Vue) a template. That template is used to generate (clone) list items for each object in your JS array. If you inspect the page and look at the Elements tab, you'll see several list items. -->
         <ul id="job-listings">

@@ -189,8 +189,8 @@ const App = {
     },
     methods: {
         addTagToFilter(tag, prop) {
-            if (!this.filters.includes(tag)) { // 'this' in Vue is referring to the Vue instance
-                this.filters.push({ key: prop, value: tag }) // pushing, for example: { key: 'role', value: 'Frontend' }
+            if (!this.filters.find(filtersItem => filtersItem.value == tag)) {
+                this.filters.push({ key: prop, value: tag })
             }
         },
         clearFilter() {
