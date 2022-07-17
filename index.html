@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32x32.png">
@@ -20,19 +21,15 @@
     
     <title>Frontend Mentor | Job Listings</title>
   </head>
-
   <body>
-    
     <div id="app">
-
       <header>
         <img src="assets\img\bg-header-mobile.svg" alt="">
       </header>
-      
       <main>
         <section id="filter" v-if="filters.length">
           <ul id="filter-tags-ul">
-            <li v-for="filter in filters" :key="filter" class="filter-tag-li"> <!-- ':key' must be a unique value. That's the only rule. --> 
+            <li v-for="filter in filters" :key="filter" class="filter-tag-li"> <!-- ':key' must be a unique value. That's the only rule. -->  
               <button @click="removeTagFromFilter(filter)">{{ filter.value }} <span>x</span></button>
             </li>
           </ul>
@@ -77,14 +74,12 @@
           </li>
         </ul>
       </main>
-          
       <footer>
         <p class="attribution">
           Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-          Coded by <a href="#">Ben</a>.
+          Coded by <a href="https://benboorstein.com/" target="_blank">Ben Boorstein</a>.
         </p>
       </footer>
-
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>
