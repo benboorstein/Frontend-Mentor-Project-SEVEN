@@ -1,10 +1,8 @@
-/*
-"Be aware of the many CSS selectors available: https://www.w3schools.com/cssref/css_selectors.asp.
-That way, you can intuitively pick the right one for any context...eventually."
-*/
+/* CSS selectors available: https://www.w3schools.com/cssref/css_selectors.asp. */
 
-/* For this FEM project, I have not yet made it work fully with the "tab test" (for accessibility). */
+/* For device widths: https://viewportsizer.com/devices/. */
 
+/* Remember "tab test" for accessibility. */
 
 /************************************************************
 ********** For Mobile/Narrow Viewport **********
@@ -233,6 +231,11 @@ footer
   ****************************************/
 
 /* } */
+
+
+
+
+
 
 
 

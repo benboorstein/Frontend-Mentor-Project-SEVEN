@@ -164,7 +164,7 @@ const App = {
                 let matches = [...this.dataArr]
                 this.filters.forEach(filtersItem => { // Example of a 'filtersItem': { key: 'role', value: 'Frontend' }
                     matches = matches.filter(listing => listing[filtersItem.key].includes(filtersItem.value))
-                    // Note that the above line took me a VERY long time to get, because of the self-referential aspect: 'matches' stores a filtered version of 'matches'. This is how we're making the UI work properly when several tag buttons are clicked consecutively and the list of listings presented, therefore, has to become smaller and smaller with each additional tag button clicked.
+                    // Note that the above line took me a while to get, because of the self-referential aspect: 'matches' stores a filtered version of 'matches'. This is how we're making the UI work properly when several tag buttons are clicked consecutively and the list of listings presented, therefore, has to become smaller and smaller with each additional tag button clicked.
                     // Note that 'includes()' does also work for the regular key-value pairs, e.g., "role": "Frontend", not just for the key-value pairs with array values, e.g., "languages": ["HTML", "CSS", "JavaScript"]
                 })
                 return matches
